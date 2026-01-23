@@ -1,0 +1,96 @@
+{
+    "fileVersion": 0,
+    "serverMaxRevisionCounter": 37,
+    "sourceMembers": {
+        "Profile__copado-lwc Profile": {
+            "memberType": "Profile",
+            "serverRevisionCounter": 30,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Layout__Employee__c-Employee Layout": {
+            "memberType": "Layout",
+            "serverRevisionCounter": 24,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Profile__copado-custom Profile": {
+            "memberType": "Profile",
+            "serverRevisionCounter": 31,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Profile__experience-workspace Profile": {
+            "memberType": "Profile",
+            "serverRevisionCounter": 32,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Profile__Minimum Access - Copado": {
+            "memberType": "Profile",
+            "serverRevisionCounter": 33,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Profile__Admin": {
+            "memberType": "Profile",
+            "serverRevisionCounter": 34,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Profile__Read Only": {
+            "memberType": "Profile",
+            "serverRevisionCounter": 35,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Profile__Salesforce API Only System Integrations": {
+            "memberType": "Profile",
+            "serverRevisionCounter": 36,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "CustomObject__Employee__c": {
+            "memberType": "CustomObject",
+            "serverRevisionCounter": 22,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "CustomTab__Employee__c": {
+            "memberType": "CustomTab",
+            "serverRevisionCounter": 10,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ListView__Employee__c.All": {
+            "memberType": "ListView",
+            "serverRevisionCounter": 15,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "CustomField__Employee__c.Employee_Name__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 16,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "CustomField__Employee__c.Mobile_No__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 23,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Layout__Company__c-Company Layout": {
+            "memberType": "Layout",
+            "serverRevisionCounter": 29,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "CustomObject__Company__c": {
+            "memberType": "CustomObject",
+            "serverRevisionCounter": 37,
+            "lastRetrievedFromServer": 37,
+            "isNameObsolete": false
+        }
+    }
+}
