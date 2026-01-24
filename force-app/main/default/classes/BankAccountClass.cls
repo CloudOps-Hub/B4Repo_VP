@@ -28,8 +28,7 @@ public class BankAccountClass {
         ac_bal = ac_bal-amt;
     }
      //4.output
-     public void balance()
-     {
+     public void balance(){
          system.debug('the balance is' + ac_bal);
      }
 }//End of the Class
