@@ -19,12 +19,8 @@ public class BankAccountClass {
     public void deposit(Integer amt){
         ac_bal = ac_bal+amt;
     }
-    public void withdraw(Integer amt){
-        ac_bal = ac_bal-amt;
-    }
      //4.output
-     public void balance()
-     {
+     public void balance(){
          system.debug('the balance is' + ac_bal);
      }
     public void getValues(){
