@@ -19,13 +19,16 @@ public class BankAccountClass {
     public void deposit(Integer amt){
         ac_bal = ac_bal+amt;
     }
-     //4.output
-     public void balance(){
-         system.debug('the balance is' + ac_bal);
-     }
     public void getValues(){
         system.debug('the account number is' + ac_no);
         system.debug('the acccount holder name is' + ach_name);
         system.debug('the account balance is' + ac_bal);
     }
+    public void withdraw(Integer amt){
+        ac_bal = ac_bal-amt;
+    }
+     //4.output
+     public void balance(){
+         system.debug('the balance is' + ac_bal);
+     }
 }//End of the Class
