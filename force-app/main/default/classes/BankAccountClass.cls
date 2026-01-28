@@ -1,5 +1,3 @@
-//business class
-//Test Chages
 public class BankAccountClass {
     //data members -- non static
     Integer ac_no,ac_bal;
