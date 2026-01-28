@@ -1,5 +1,7 @@
 //business class
 //Test Chages
+//Account
+//Test stash
 public class BankAccountClass {
     //data members -- non static
     Integer ac_no,ac_bal;
@@ -7,6 +9,7 @@ public class BankAccountClass {
     Integer count;
     //member method
     //2.Input
+    //test
     public void setValues(Integer no,String name,Integer bal){
         ac_no = no;
         ach_name = name;
