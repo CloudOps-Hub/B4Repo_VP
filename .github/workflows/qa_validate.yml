@@ -19,14 +19,17 @@ jobs:
         - name: Install SF CLI
           run: npm install --global @salesforce/cli
 
-        - name: Create server.key
-          run: |
-            mkdir -p assets
-            echo "${{ secrets.JWT_KEY }}" | base64 --decode > assets/server.key
+        #- name: Create server.key
+          #run: |
+           # mkdir -p assets
+            #echo "${{ secrets.JWT_KEY }}" | base64 --decode > assets/server.key
 
         - name: Authenticate SF 
           run: |
-              sf org login jwt --client-id ${{ secrets.CLIENT_ID }} --jwt-key-file assets/server.key --username ${{ secrets.SF_USERNAME_QA }} --instance-url https://test.salesforce.com --alias B3QA
+              echo "${{secrets.JWT_KEY}}" > server.key
+              
+              sf org login jwt --client-id ${{ secrets.CLIENT_ID }} --jwt-key-file server.key --username ${{ secrets.SF_USERNAME_QA }} --instance-url https://test.salesforce.com --alias B3QA
+        
         - name: SF Deploy
           run: |
               sf project deploy start --source-dir force-app --test-level RunLocalTests --target-org B3QA --wait 120 --verbose
