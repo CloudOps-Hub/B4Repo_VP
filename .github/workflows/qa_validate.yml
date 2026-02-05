@@ -1,1 +1,38 @@
-#test
+name: Salesforce QA Validation
+
+on:
+  push:
+    branches: 
+      - develop
+      - integration
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v3
+        
+        - name: Install Node
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20
+
+        - name: Install SF CLI
+          run: npm install --global @salesforce/cli
+
+        #- name: Create server.key
+          #run: |
+           # mkdir -p assets
+            #echo "${{ secrets.JWT_KEY }}" | base64 --decode > assets/server.key
+
+        - name: Authenticate SF 
+          run: |
+              echo "${{secrets.JWT_KEY}}" > server.key
+              
+              sf org login jwt --client-id ${{ secrets.CLIENT_ID }} --jwt-key-file server.key --username ${{ secrets.SF_USERNAME_QA }} --instance-url https://test.salesforce.com --alias B3QA
+        
+        - name: SF Deploy
+          run: |
+              sf project deploy start --source-dir force-app --test-level RunLocalTests --target-org B3QA --wait 120 --verbose
+          
