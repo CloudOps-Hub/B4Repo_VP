@@ -5,6 +5,8 @@ on:
     branches: 
       - develop
       - integration
+    paths: 
+      - "force-app/**"
 jobs:
     deploy:
         runs-on: ubuntu-latest
@@ -21,10 +23,16 @@ jobs:
         - name: Install SF CLI
           run: npm install --global @salesforce/cli
 
-        #- name: Create server.key
-          #run: |
-           # mkdir -p assets
-            #echo "${{ secrets.JWT_KEY }}" | base64 --decode > assets/server.key
+        - name: Install sfdx-git-delta Plugin
+          run: echo "y" | sf plugins install sfdx-git-delta
+
+        - name: Generate the package.xml for delta files
+          run: |
+            mkdir delta
+            sf sgd source delta --to "HEAD" --from "HEAD~1" \
+              --output "./delta" --ignore-whitespace -d
+            echo "--- package.xml generated with added and modified metadata ---"
+            cat delta/package/package.xml || echo "No package.xml generated"
 
         - name: Authenticate SF 
           run: |
