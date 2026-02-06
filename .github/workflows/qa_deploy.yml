@@ -1,0 +1,47 @@
+
+name: Salesforce QA Validation
+
+on:
+  pull_request:
+    branches: 
+      - develop
+      - integration
+    paths: 
+      - "force-app/**"
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v3
+        
+        - name: Install Node
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20
+
+        - name: Install SF CLI
+          run: npm install --global @salesforce/cli
+
+        - name: Install sfdx-git-delta Plugin
+          run: echo "y" | sf plugins install sfdx-git-delta
+
+        - name: Generate the package.xml for delta files
+          run: |
+            mkdir delta
+            sf sgd source delta --to "HEAD" --from "HEAD~1" \
+              --output "./delta" --ignore-whitespace -d
+            echo "--- package.xml generated with added and modified metadata ---"
+            cat delta/package/package.xml || echo "No package.xml generated"
+
+        - name: Authenticate SF 
+          run: |
+              echo "${{secrets.JWT_KEY}}" > server.key
+              
+              sf org login jwt --client-id ${{ secrets.CLIENT_ID }} --jwt-key-file server.key --username ${{ secrets.SF_USERNAME_QA }} --instance-url https://test.salesforce.com --alias B3QA
+        
+        - name: SF Deploy
+          run: |
+              sf project deploy start --manifest delta/package/package.xml --test-level RunLocalTests --target-org B3QA --wait 120 --verbose
+          
