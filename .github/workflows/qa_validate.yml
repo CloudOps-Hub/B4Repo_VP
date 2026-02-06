@@ -30,7 +30,7 @@ jobs:
           run: |
             mkdir delta
             sf sgd source delta --to "HEAD" --from "HEAD~1" \
-              --output "./delta" --ignore-whitespace -d
+              --output-dir "./delta" --ignore-whitespace -d
             echo "--- package.xml generated with added and modified metadata ---"
             cat delta/package/package.xml || echo "No package.xml generated"
 
