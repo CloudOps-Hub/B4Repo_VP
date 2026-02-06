@@ -9,18 +9,14 @@ public class BankAccountClass {
         ac_no = no;
         ach_name = name;
         ac_bal = bal;
-    }//Test
+    }
     public static void getCount(){
      integer count=0;
+        system.debug('the number of customers are' + count);
     }
     //3.process
     public void deposit(Integer amt){
         ac_bal = ac_bal+amt;
-    }
-    public void getValues(){
-        system.debug('the account number is' + ac_no);
-        system.debug('the acccount holder name is' + ach_name);
-        system.debug('the account balance is' + ac_bal);
     }
     public void withdraw(Integer amt){
         ac_bal = ac_bal-amt;

@@ -14,6 +14,8 @@ jobs:
         steps:
         - name: Checkout Repository
           uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
         
         - name: Install Node
           uses: actions/setup-node@v4
@@ -30,7 +32,7 @@ jobs:
           run: |
             mkdir delta
             sf sgd source delta --to "HEAD" --from "HEAD~1" \
-              --output "./delta" --ignore-whitespace -d
+              --output-dir "./delta" --ignore-whitespace -d
             echo "--- package.xml generated with added and modified metadata ---"
             cat delta/package/package.xml || echo "No package.xml generated"
 
@@ -39,6 +41,20 @@ jobs:
               echo "${{secrets.JWT_KEY}}" > server.key
               
               sf org login jwt --client-id ${{ secrets.CLIENT_ID }} --jwt-key-file server.key --username ${{ secrets.SF_USERNAME_QA }} --instance-url https://test.salesforce.com --alias B3QA
+        
+        - name: Run SFDX CLI Scanner
+          run: |
+                mkdir reports
+                sf code-analyzer run \
+                  -t "force-app" \
+                  --rule-selector Recommended \
+                  --output-file reports/scan-reports.html
+        
+        - name: Upload CLI Scanner HTML report
+          uses: actions/upload-artifact@v4
+          with:
+            name: cli-scan-report
+            path: reports/scan-reports.html
         
         - name: SF Deploy
           run: |
