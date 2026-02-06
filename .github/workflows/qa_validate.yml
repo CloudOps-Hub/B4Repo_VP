@@ -1,7 +1,7 @@
 name: Salesforce QA Validation
 
 on:
-  push:
+  pull_request:
     branches: 
       - develop
       - integration
