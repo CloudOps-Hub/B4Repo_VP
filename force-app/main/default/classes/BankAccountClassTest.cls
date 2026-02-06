@@ -22,5 +22,5 @@ public class BankAccountClassTest {
         cust2.balance();
         cust2.getValues();
         BankAccountClass.getCount();
-    }//test
+    }
 }
