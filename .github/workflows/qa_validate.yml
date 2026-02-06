@@ -41,14 +41,20 @@ jobs:
               echo "${{secrets.JWT_KEY}}" > server.key
               
               sf org login jwt --client-id ${{ secrets.CLIENT_ID }} --jwt-key-file server.key --username ${{ secrets.SF_USERNAME_QA }} --instance-url https://test.salesforce.com --alias B3QA
+        
         - name: Run SFDX CLI Scanner
           run: |
                 mkdir reports
-                sf scanner run -f html \
+                sf code-analyzer run \
                   -t "force-app" \
-                  -e "eslint,pmd,cpd" \
-                  -c "Design,Best Practices,Code Style,Performance,Security" \
-                  --outfile reports/scan-reports.html
+                  --rule-selector Recommended \
+                  --output-file reports/scan-reports.html
+        
+        - name: Upload CLI Scanner HTML report
+          uses: actions/upload-artifact@v4
+          with:
+            name: cli-scan-report
+            path: reports/scan-reports.html
         
         - name: SF Deploy
           run: |
